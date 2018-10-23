@@ -4,6 +4,7 @@ if hungary == "yes":
     print ("eat pizza")
     print ("eat burger")
     print ("eat fries")
+    print ("eat bananas")
 else:
     print ("do your work")
 
