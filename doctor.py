@@ -3,4 +3,7 @@ if doctor == "yes":
     print ("cure patient")
 
 else:
-    print ("move ahead")
+    print ("you would be engineer")
+    print ("call emergency")
+
+
