@@ -1,5 +1,5 @@
 doctor = input("are you doctor?")
-if doctor == "yes":
+if doctor == "yes" and doctor == "bro":
     print ("cure patient")
     print ("give medicine")
     print ("also provide injection")
