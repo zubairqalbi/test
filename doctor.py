@@ -13,3 +13,6 @@ print ("where are you from ?")
 
 print (" its late night")
 print ("feeling loneliness")
+
+print ("its time to pray")
+print ("lets gether in mosque")
