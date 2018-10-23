@@ -10,3 +10,6 @@ else:
 print ("how are you guys")
 print ("i am from pakistan")
 print ("where are you from ?")
+
+print (" its late night")
+print ("feeling loneliness")
