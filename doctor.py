@@ -16,3 +16,5 @@ print ("feeling loneliness")
 
 print ("its time to pray")
 print ("lets gether in mosque")
+
+print ("what are you doing zubair")
