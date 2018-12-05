@@ -1,0 +1,451 @@
+\documentclass{beamer}
+\usetheme[progressbar=frametitle]{metropolis}
+\setbeamertemplate{frame numbering}[fraction]
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{spruce}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{subcaption}
+\setbeamercolor{background canvas}{bg=white}
+\title{Directed Reading}
+\author{Muhammad Zubair Khan}
+
+
+\begin{document}
+%\metroset{block=fill}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+\begin{itemize}
+\item Dataset 
+\item Deep-Net Strategy
+\item Result
+\item Final Report   
+\item Tools learned
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Dataset}
+\begin{itemize}
+\item \textbf{Total fundus images:} $208$
+\item \textbf{Classes:} $4$ 
+\item \textbf{Normal images:} $54$
+\item \textbf{DR1 images:} $42$
+\item \textbf{DR2 images:} $60$
+\item \textbf{DR3 images:} $52$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Constant HyperParameters}
+\begin{itemize}
+\item \textbf{Epochs:} $30$
+\item \textbf{Activation hidden layer:} Rectifier Linear Unit(ReLU)
+\item \textbf{Activation output layer:} Softmax
+\item \textbf{Loss function:} Categorical-Crossentropy
+\item \textbf{Dropout:} $0.5$
+\item \textbf{Optimizer:} Adam
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Dataset}
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth} \vspace{15pt}
+\includegraphics[width=\linewidth]{normal.jpg}
+\caption{Normal}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{dr1.jpg}
+\caption{DR1}
+\label{fig:b}
+\end{subfigure}
+\caption{Color fundus images representing Normal and Stage-$1$ DR}
+\label{fig: Image1}
+\end{figure}
+
+\end{frame}
+\begin{frame}{Dataset}
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{dr2.jpg}
+\caption{DR2}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}{0.45\linewidth} \vspace{15pt}
+\includegraphics[width=\linewidth]{dr3.jpg}
+\caption{DR3}
+\label{fig:b}
+\end{subfigure}
+\caption{Color fundus images representing Stage-$2$ and $3$ of DR}
+\label{fig: Image2}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Deep-Net Strategies}
+
+\begin{enumerate}
+\item Conv-Net on gray-scale fundus images
+\item Conv-net on color fundus images
+\item Conv-net on augmented fundus images
+\item Transfer learning using VGG16 on color fundus images
+\item Transfer learning using VGG19 on color fundus images
+\item Fine tuning using VGG16 on color fundus images
+\item Fine tuning using VGG19 on color fundus images
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Results}
+\begin{center}
+\begin{block}{\, For jupyter notebooks (code files), click link below}
+\url{https://github.com/zubairqalbi/DR_Report}
+\end{block}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{CNN on gray fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.8588$ & $0.6154$ & $1.1591$ & $0.4808$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Classification Report}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\hline
+\textbf{Normal} & $0.31$ & $0.40$ & $0.35$ & $10$\\
+\textbf{DR1} & $0.67$ & $0.55$ & $0.60$ & $11$\\
+\textbf{DR2} & $0.50$ & $0.56$ & $0.53$ & $16$\\
+\textbf{DR3} & $0.50$ & $0.40$ & $0.44$ & $15$\\
+\textbf{Weighted avg} & $0.50$ & $0.48$ & $0.48$ & $52$\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_gray_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_gray_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy on gray-scale fundus images}
+\label{fig: Image1}
+\end{figure}    
+
+\end{frame}
+\begin{frame}{CNN on color fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.5568$ & $0.7628$ & $1.3214$ & $0.6923$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Classification Report}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\hline
+\textbf{Normal} & $0.53$ & $0.91$ & $0.67$ & $11$\\
+\textbf{DR1} & $0.90$ & $0.69$ & $0.78$ & $13$\\
+\textbf{DR2} & $0.73$ & $0.57$ & $0.64$ & $14$\\
+\textbf{DR3} & $0.75$ & $0.64$ & $0.69$ & $14$\\
+\textbf{Weighted avg} & $0.73$ & $0.69$ & $0.70$ & $52$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_color_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_color_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy on color fundus images}
+\label{fig: Image2}
+\end{figure}
+\end{frame}
+
+\begin{frame}{CNN on augmented fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.9614$ & $0.5495$ & $1.0002$ & $0.4808$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Classification Report}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\hline
+\textbf{Normal} & $0.50$ & $0.73$ & $0.59$ & $11$\\
+\textbf{DR1} & $1.00$ & $0.67$ & $0.80$ & $12$\\
+\textbf{DR2} & $0.42$ & $0.42$ & $0.42$ & $19$\\
+\textbf{DR3} & $0.11$ & $0.10$ & $0.11$ & $10$\\
+\textbf{Weighted avg} & $0.51$ & $0.48$ & $0.48$ & $52$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_datagen_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{fundus_datagen_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy of augmented color fundus images}
+\label{fig: Image3}
+\end{figure}
+\end{frame}
+
+\begin{frame}{TL using vgg16 on color fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.2025$ & $0.9187$ & $0.6669$ & $0.7250$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Classification Report}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\hline
+\textbf{Normal} & $0.40$ & $0.29$ & $0.33$ & $7$\\
+\textbf{DR1} & $0.94$ & $ 0.74$ & $0.83$ & $23$\\
+\textbf{DR2} & $0.59$ & $1.00$ & $0.74$ & $10$\\
+\textbf{Weighted avg} & $0.76$ & $0.72$ & $0.72$ & $40$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg16_tl_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg16_tl_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy after applying transfer learning using VGG16 on augmented color fundus images}
+\label{fig: Image4}
+\end{figure}
+\end{frame}
+
+\begin{frame}{TL using vgg19 on color fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.2166$ & $0.9187$ & $0.6566$ & $0.7500$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Classification Report}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\hline
+\textbf{Normal} & $0.60$ & $0.43$ & $0.50$ & $7$\\
+\textbf{DR1} & $0.85$ & $0.74$ & $0.79$ & $23$\\
+\textbf{DR2} & $0.67$ & $1.00$ & $0.80$ & $10$\\
+\textbf{Weighted avg} & $0.76$ & $0.75$ & $0.74$ & $40$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg19_tl_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg19_tl_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy after applying transfer learning using VGG19 on augmented color fundus images}
+\label{fig: Image5}
+\end{figure}
+\end{frame}
+
+\begin{frame}{FT using vgg16 on color fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$3.2858e-05$ & $1.0000$ & $1.2077$ & $0.7250$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg16_ft_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg16_ft_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy after applying fine tuning by removing top four layers of VGG16 on augmented color fundus images}
+\label{fig: Image6}
+\end{figure}
+\end{frame}
+
+\begin{frame}{FT using vgg19 on color fundus images}
+\begin{table}
+\caption{Training and Testing}
+\begin{tabular}{c c c c}
+\hline
+\textbf{Train Loss} & \textbf{Train Accuracy} & \textbf{Test Loss} & \textbf{Test Accuracy}\\
+\hline
+$0.2444$ & $0.9687$ & $2.3069$ & $0.7750$\\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Continued...}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg19_ft_loss.png}
+\caption{Loss}
+\label{fig:a}
+\end{subfigure}
+\quad
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{vgg19_ft_accuracy.png}
+\caption{Accuracy}
+\label{fig:b}
+\end{subfigure}
+\caption{Loss and Accuracy after applying fine tuning by removing top four layers of VGG19 on augmented color fundus images}
+\label{fig: Image7}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Final Report}
+\begin{center}
+\begin{block}{Click on link below to see the directed reading report}
+\url{https://github.com/zubairqalbi/DR_Report}
+\end{block}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[t]{Research document writting tools Learned}
+\begin{itemize}
+\item \LaTeX \,(Miktex with TexStudio)
+\item \LaTeX \,(Miktex with TexMaker)
+\item \LaTeX \, with Lyx 
+\item BibTeX management with Mendeley Desktop  
+\item BibTeX management with JabRef
+\item BibTeX management with Zotero
+\item Beamers 
+\end{itemize}
+\end{frame}
+\begin{frame}{Next To Do...}
+\begin{center}
+\Large{\textbf{Image segmentation using deep neural networks}}
+\end{center}
+\end{frame}
+\begin{frame}[standout]{Reference Platforms}
+\begin{itemize}
+\item Github
+\item Kaggle
+\item Keras Documentation
+\item EliteDataScience
+\end{itemize}
+
+\end{frame}
+
+\end{document}
